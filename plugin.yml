@@ -1,0 +1,5 @@
+name: MegaCatch
+version: 1.0.0
+description: A plugin to add extra events to fishing.
+author: zonedabone
+main: org.zonedabone.megacatch.MegaCatch
