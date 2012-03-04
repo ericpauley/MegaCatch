@@ -6,10 +6,8 @@ import java.util.TimerTask;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.entity.CreatureType;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Event;
-import org.bukkit.event.Event.Type;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -34,21 +32,16 @@ public class MegaCatch extends JavaPlugin {
 
 	public void onDisable() {
 
-		System.out.println("Mega Catch Version 0.8 is Disabled");
 	}
 
 	public void onEnable() {
 
-		PluginManager BigCatch = getServer().getPluginManager();
+		PluginManager pm = getServer().getPluginManager();
 
-		BigCatch.registerEvent(Type.PLAYER_DROP_ITEM, this.dropFish,
-				Event.Priority.Normal, this);
-		BigCatch.registerEvent(Type.PLAYER_INTERACT, this.rodActivation,
-				Event.Priority.Low, this);
-		BigCatch.registerEvent(Type.PLAYER_PICKUP_ITEM, this.catchFish,
-				Event.Priority.Normal, this);
+		pm.registerEvents(catchFish, this);
+		pm.registerEvents(dropFish, this);
+		pm.registerEvents(rodActivation, this);
 
-		System.out.println("Mega Catch version 0.8 is enabled.");
 
 	}
 
@@ -200,11 +193,11 @@ public class MegaCatch extends JavaPlugin {
 					if (catchChance == 21) {
 						int bigChance = (int) (Math.random() * 3 + 1);
 						if (bigChance == 1 || bigChance == 2) {
-							player.getWorld().spawnCreature(player.getLocation(), CreatureType.SQUID);
+							player.getWorld().spawnCreature(player.getLocation(), EntityType.SQUID);
 							player.sendMessage(ChatColor.GOLD
 									+ "You snagged a Squid!! HOLY CRAP!!!");
 						} else {
-							player.getWorld().spawnCreature(player.getLocation(), CreatureType.SQUID);
+							player.getWorld().spawnCreature(player.getLocation(), EntityType.SQUID);
 							player.sendMessage(ChatColor.GOLD
 									+ "You snagged a Squid!! HOLY CRAP!!!");
 							player.getInventory().addItem(new ItemStack(Material.RAW_FISH,1));
@@ -220,7 +213,7 @@ public class MegaCatch extends JavaPlugin {
 					if (catchChance == 25) {
 						int bigChance = (int) (Math.random() * 10 + 1);
 						if (bigChance == 1) {
-							player.getWorld().spawnCreature(player.getLocation(), CreatureType.SKELETON);
+							player.getWorld().spawnCreature(player.getLocation(), EntityType.SKELETON);
 							player.sendMessage(ChatColor.RED
 									+ "HOLY CRAP!! A SKELETON!! RUN!! RUN!! RUN!!!!");
 						} else {
@@ -236,7 +229,7 @@ public class MegaCatch extends JavaPlugin {
 					if (catchChance == 26) {
 						int bigChance = (int) (Math.random() * 10 + 1);
 						if (bigChance == 1 || bigChance == 2) {
-							player.getWorld().spawnCreature(player.getLocation(), CreatureType.PIG);
+							player.getWorld().spawnCreature(player.getLocation(), EntityType.PIG);
 							player.sendMessage(ChatColor.GREEN
 									+ "Ummm, you saved a pig from drowning...");
 

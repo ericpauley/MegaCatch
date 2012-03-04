@@ -2,10 +2,12 @@ package org.zonedabone.megacatch;
 
 import java.util.Timer;
 import java.util.TimerTask;
-import org.bukkit.event.player.PlayerListener;
+
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerPickupItemEvent;
 
-public class CatchFish extends PlayerListener {
+public class CatchFish implements Listener{
 
 	private boolean caughtFish = false;
 
@@ -17,6 +19,7 @@ public class CatchFish extends PlayerListener {
 	 * The following method was written with help from Edward Hand.
 	 */
 
+	@EventHandler
 	public void onPlayerPickupItem(PlayerPickupItemEvent event) {
 		if (event.getItem().getItemStack().getTypeId() == 349) {
 			caughtFish = true;

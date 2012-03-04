@@ -2,10 +2,12 @@ package org.zonedabone.megacatch;
 
 import java.util.Timer;
 import java.util.TimerTask;
-import org.bukkit.event.player.PlayerDropItemEvent;
-import org.bukkit.event.player.PlayerListener;
 
-public class DropFish extends PlayerListener {
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerDropItemEvent;
+
+public class DropFish implements Listener{
 
 	private boolean dropedFish = false;
 
@@ -14,6 +16,7 @@ public class DropFish extends PlayerListener {
 		this.dropedFish = dropedFish;
 	}
 
+	@EventHandler
 	public void onPlayerDropItem(PlayerDropItemEvent event) {
 			if (event.getItemDrop().getItemStack().getTypeId() == 349) {
 				new DropReset(60); // resets dropedFish to false after 60
